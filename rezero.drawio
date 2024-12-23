@@ -1,0 +1,82 @@
+<mxfile host="65bd71144e">
+    <diagram id="vdOxStFYfAVnqjTtIKuB" name="Page-1">
+        <mxGraphModel dx="1178" dy="676" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="700" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="64" value="" style="group" connectable="0" vertex="1" parent="1">
+                    <mxGeometry x="42.5" y="178" width="745" height="222" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="64">
+                    <mxGeometry x="7.5" y="90" width="45" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;font color=&quot;#000000&quot;&gt;ユーザー&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="64">
+                    <mxGeometry y="60" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="64">
+                    <mxGeometry x="594.5" y="119" width="140" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;PostgreSQL&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="64">
+                    <mxGeometry x="638" y="163" width="70" height="27" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="64">
+                    <mxGeometry x="604.5" y="29" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="" style="shape=flexArrow;endArrow=classic;html=1;strokeWidth=1;fillColor=#FFFFFF;strokeColor=#000000;" edge="1" parent="64">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="74.5" y="122" as="sourcePoint"/>
+                        <mxPoint x="145.5" y="122" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; background-color: rgb(42, 37, 47);&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%22%20style%3D%22shape%3Dimage%3BverticalLabelPosition%3Dbottom%3BlabelBackgroundColor%3Ddefault%3BverticalAlign%3Dtop%3Baspect%3Dfixed%3BimageAspect%3D0%3Bimage%3Dhttps%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F2415%2FPNG%2F512%2Fpostgresql_plain_logo_icon_146389.png%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22576%22%20y%3D%22349.29%22%20width%3D%2227.5%22%20height%3D%2227.5%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;strokeWidth=1;width=8.333333333333334;startSize=3.9806451612903224;startWidth=14.623655913978492;endWidth=14.623655913978492;endSize=3.9806451612903224;strokeColor=#000000;" edge="1" parent="64">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="663.97" y="119" as="sourcePoint"/>
+                        <mxPoint x="663.97" y="69" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="50" value="" style="group" connectable="0" vertex="1" parent="64">
+                    <mxGeometry x="164.5" y="23.900000000000006" width="295" height="198.10000000000002" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#000000;strokeWidth=1;fillColor=none;" vertex="1" parent="50">
+                    <mxGeometry width="295" height="198.1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.icon-icons.com/icons2/2699/PNG/512/firebase_logo_icon_168209.png;" vertex="1" parent="50">
+                    <mxGeometry x="85.19" y="125" width="124.59" height="62.3" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.icon-icons.com/icons2/2415/PNG/512/typescript_original_logo_icon_146317.png;" vertex="1" parent="50">
+                    <mxGeometry x="126.10000000000002" y="75.1" width="42.8" height="42.8" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.icon-icons.com/icons2/2699/PNG/512/vuejs_logo_icon_169247.png;imageBackground=#FFFFFF;" vertex="1" parent="50">
+                    <mxGeometry x="96.85000000000002" y="8" width="101.28" height="50.64" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.icon-icons.com/icons2/2415/PNG/512/postgresql_plain_logo_icon_146389.png;" vertex="1" parent="64">
+                    <mxGeometry x="610.5" y="163" width="27.5" height="27.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="" style="group" connectable="0" vertex="1" parent="64">
+                    <mxGeometry x="618.5" y="31.25" width="78" height="31" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important; background-color: rgb(214, 232, 213);&quot;&gt;Prisma&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;opacity=0;" vertex="1" parent="53">
+                    <mxGeometry x="31" y="4.5" width="47" height="26.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_light_prisma_icon_130444.png;" vertex="1" parent="53">
+                    <mxGeometry width="31" height="31" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="&lt;font color=&quot;#000000&quot;&gt;クライアント・サーバー&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="64">
+                    <mxGeometry x="240.5" width="143" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;バックエンド&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="64">
+                    <mxGeometry x="625.5" width="78" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; background-color: rgb(42, 37, 47);&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%22%20style%3D%22shape%3Dimage%3BverticalLabelPosition%3Dbottom%3BlabelBackgroundColor%3Ddefault%3BverticalAlign%3Dtop%3Baspect%3Dfixed%3BimageAspect%3D0%3Bimage%3Dhttps%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F2415%2FPNG%2F512%2Fpostgresql_plain_logo_icon_146389.png%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22576%22%20y%3D%22349.29%22%20width%3D%2227.5%22%20height%3D%2227.5%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;strokeWidth=1;width=12.941176470588236;startSize=3.9806451612903224;startWidth=14.623655913978492;endWidth=14.623655913978492;endSize=3.9806451612903224;strokeColor=#000000;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="64" target="63">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="459.5" y="119.72000000000003" as="sourcePoint"/>
+                        <mxPoint x="584.5" y="119.47000000000003" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="63" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=none;" vertex="1" parent="64">
+                    <mxGeometry x="584" y="21.5" width="161" height="198.5" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
