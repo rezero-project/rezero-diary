@@ -86,17 +86,10 @@ npx prisma migrate dev --name init
 ```
 
     ※init に関しては変更内容によって変更する
+    ※自動でnpx prisma generateも呼び出される
 
 - 既に migrations ディレクトリがある場合には、以下のコマンドを実行することで既にあるマイグレーションファイルを参照し、データベースに反映される
 
 ```
 npx prisma migrate deploy
-```
-
-### 6.Prisma クライアントの生成
-
-- データベースの操作に必要
-
-```
-npx prisma generate
 ```
