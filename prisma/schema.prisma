@@ -46,7 +46,7 @@ model Diary {
   title String
   content String
   date String
-  image_path String
+  image_path String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user_id String

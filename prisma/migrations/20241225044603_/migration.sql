@@ -35,7 +35,7 @@ CREATE TABLE "Diary" (
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "date" TEXT NOT NULL,
-    "image_path" TEXT NOT NULL,
+    "image_path" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "user_id" TEXT NOT NULL,
