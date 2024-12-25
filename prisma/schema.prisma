@@ -18,3 +18,68 @@ model User {
   email   String   @unique
   name    String
 }
+
+model Users {
+  id Int @id @default(autoincrement())
+  name String
+  email String
+  birthday String
+  nickname String
+  password String
+  character_id String
+}
+
+model Character {
+  id Int @id @default(autoincrement())
+  expression String
+  image String
+}
+
+model Character_score {
+  id Int @id @default(autoincrement())
+  score String
+  character_id String
+}
+
+model Diary {
+  id Int @id @default(autoincrement())
+  title String
+  content String
+  date String
+  image_path String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user_id String
+}
+
+model Setting {
+  id Int @id @default(autoincrement())
+  display Boolean
+  notification Boolean
+  music Boolean
+  user_id String
+}
+
+model Achievement {
+  id Int @id @default(autoincrement())
+  title String
+  progress String
+  user_id String
+}
+
+model Achievement_image {
+  id Int @id @default(autoincrement())
+  image_path String
+  achievement_id String
+}
+
+model Goal {
+  id Int @id @default(autoincrement())
+  content String
+  user_id String
+}
+
+model Music {
+  id Int @id @default(autoincrement())
+  music_path String
+}
