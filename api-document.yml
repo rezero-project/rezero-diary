@@ -1,0 +1,789 @@
+openapi: 3.0.0
+info:
+  title: Re:zero-api
+  description: 日記アプリの全て
+  version: 1.0.0
+tags:
+  - name: user
+    description: ユーザーに関する操作
+  - name: character
+    description: キャラクター情報
+  - name: goals
+    description: 目標について
+  - name: todayface
+    description: 顔の画像取得
+  - name: dairies
+    description: 日記に関する情報
+  - name: setting
+    description: 設定について
+  - name: achievement
+    description: 達成項目について
+paths:
+  /user/create:
+    post:
+      summary: 新規会員登録
+      description: 新規会員登録をする
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 名前
+                  example: "kuro"
+                birthday:
+                  type: string
+                  description: 生年月日
+                  example: "2000-06-20"
+                email:
+                  type: string
+                  description: エールアドレス
+                  example: "dfhlafdaj@example.com"
+                password:
+                  type: string
+                  description: パスワード
+                  example: "password123"
+      responses:
+        "200":
+          description: 新規会員登録成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: メッセージ
+                    example: "会員登録が完了しました"
+                  user:
+                    type: object
+                    description: ユーザーID
+                    properties:
+                      userId:
+                        type: string
+                        description: ユーザーID
+                        example: "12345"
+                      name:
+                        type: string
+                        description: 名前
+                        example: "kuro"
+                      email:
+                        type: string
+                        description: メールアドレス
+                        example: "dfhlafdaj@example.com"
+                      birthday:
+                        type: string
+                        description: 生年月日
+                        example: "2000-06-20"
+                      nickname:
+                        type: string
+                        description: ニックネーム
+                        example: null
+                      characterId:
+                        type: string
+                        description: キャラクターID
+                        example: null
+        "400":
+          description: エラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequestError"
+              example:
+                error: 1002
+                message: 入力されたメールアドレスはすでに使われています。
+  /user/login:
+    post:
+      summary: ログインをする
+      description: メールアドレスとパスワードを入力する
+      tags:
+        - user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: メールアドレス
+                  example: "dfhlafdaj@example.com"
+                password:
+                  type: string
+                  description: パスワード
+                  example: "password123"
+      responses:
+        "200":
+          description: ログイン成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    description: ユーザー情報
+
+                    properties:
+                      userId:
+                        type: string
+                        description: ユーザーID
+                        example: "12345"
+                      name:
+                        type: string
+                        description: 名前
+                        example: "kuro"
+                      email:
+                        type: string
+                        description: メールアドレス
+                        example: "dfhlafdaj@example.com"
+                      birthday:
+                        type: string
+                        description: 生年月日
+                        example: "2000-06-20"
+                      nickname:
+                        type: string
+                        description: ニックネーム
+                        nullable: true
+                        example: "kuroD"
+                      characterId:
+                        type: string
+                        description: キャラクターID
+                        nullable: true
+                        example: "1"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequestError"
+              example:
+                error:
+                  code: 1001
+                  message: メールアドレスまたはパスワードが正しくありません。
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFoundError"
+        "500":
+          description: サーバーエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServerError"
+  /user/logout:
+    post:
+      tags:
+        - user
+      summary: ログアウト
+      description: ログアウトする
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      responses:
+        "200":
+          description: ログアウト成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: メッセージ
+                    example: "ログアウト成功しました。"
+        "401":
+          description: 認証エラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
+              example:
+                error:
+                  message: 認証が必要です。再度ログインしてください。
+        "500":
+          description: サーバーエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServerError"
+  /user/nickname:
+    patch:
+      tags:
+        - user
+      summary: ニックネームを登録する
+      description: ニックネームを登録、更新できる
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickname:
+                  type: string
+                  description: ニックネーム
+                  example: "kuroD"
+      responses:
+        "200":
+          description: ニックネーム登録成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: メッセージ
+                    example: "ユーザー名が正常に登録できました"
+                  user:
+                    type: object
+                    description: ニックネーム更新
+                    properties:
+                      userId:
+                        type: string
+                        description: ユーザーID
+                        example: "12345"
+                      name:
+                        type: string
+                        description: 名前
+                        example: "kuro"
+                      email:
+                        type: string
+                        description: メールアドレス
+                        example: "dfhlafdaj@example.com"
+                      birthday:
+                        type: string
+                        description: 生年月日
+                        example: "2000-06-20"
+                      nickname:
+                        type: string
+                        description: ニックネーム
+                        example: "kuroD"
+        "400":
+          description: ニックネーム登録時のエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequestError"
+              example:
+                error:
+                  code: 1003
+                  message: 入力されたニックネームは既に使われています。
+  /character:
+    patch:
+      summary: キャラクターを選択する
+      description: ユーザーが選択したキャラクター情報を更新します。
+      tags:
+        - character
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                characterId:
+                  type: string
+                  description: 選択するキャラクターのID
+                  example: "01"
+      responses:
+        "200":
+          description: キャラクター選択完了
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  character:
+                    type: object
+                    description: 選択したキャラクター情報
+                    properties:
+                      characterId:
+                        type: string
+                        description: キャラクターID
+                        example: "01"
+                      expression:
+                        type: string
+                        description: キャラクターの表情ステータス
+                        example: Fantastic
+                      image:
+                        type: string
+                        description: キャラクター画像のパス
+                        example: example.png
+                  userId:
+                    type: string
+                    description: ユーザーID
+                    example: "12345"
+                  nickname:
+                    type: string
+                    description: ニックネーム
+                    example: スバル
+        "500":
+          description: サーバーエラーが発生した場合
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServerError"
+  /goals:
+    post:
+      summary: 目標設定
+      description: ユーザーが目標を登録できる
+      tags:
+        - goals
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                goal:
+                  type: string
+                  description: 目標
+                  example: "レムを助ける"
+      responses:
+        "200":
+          description: 目標の保存成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  goal:
+                    type: string
+                    description: 登録された目標
+                    example: "レムを助ける"
+                  message:
+                    type: string
+                    description: メッセージ
+                    example: "目標が保存されました。"
+        "400":
+          description: 目標登録時のエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequestError"
+              example:
+                error:
+                  code: 1001
+                  message: 目標はすでに登録済みです
+  /todayface:
+    get:
+      summary: その日の顔の画像を取得
+      description: 日記で感情分析した結果の顔を取得
+      tags:
+        - todayface
+      parameters:
+        - name: string
+          in: query
+          required: true
+          description: The string identifying the user or goal.
+          schema:
+            type: string
+        - name: image
+          in: query
+          required: true
+          description: 今日の顔を取得
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful retrieval of today's face
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The ID of the face image
+                    example: 1
+                  image:
+                    type: string
+                    description: The filename of the face image
+                    example: "face.png"
+                  scores:
+                    type: array
+                    items:
+                      type: number
+                    description: A list of scores representing the user's evaluation of the face
+                    example: [0.6, 0.7, 0.8]
+        "400":
+          description: 顔画像取得中のエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFoundError"
+  /diaries:
+    post:
+      summary: 日記の記述をする
+      description: 日記の登録と、文章内容を元に感情分析を行う
+      tags:
+        - dairies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 日記のタイトル
+                content:
+                  type: string
+                  description: 日記の本文を記述
+                date:
+                  type: string
+                  description: 日記の日付 (YYYY-MM-DD形式を推奨)
+                image:
+                  type: string
+                  description: 日記の写真 (ファイル名やURLを格納)
+              required:
+                - title
+                - content
+                - date
+                - image
+      responses:
+        "200":
+          description: 日記の登録成功時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 日記が保存されました。
+                  diary:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: 登録された日記のID
+                      title:
+                        type: string
+                        description: 日記のタイトル
+                      content:
+                        type: string
+                        description: 日記の本文
+                      date:
+                        type: string
+                        description: 日記の日付
+                      image:
+                        type: string
+                        description: 日記の写真
+                    required:
+                      - id
+                      - title
+                      - content
+                      - date
+                      - image
+                  sentimentAnalysis:
+                    type: object
+                    properties:
+                      score:
+                        type: number
+                        description: 感情分析のスコア
+                        example: 0.8
+                      magnitude:
+                        type: number
+                        description: 感情分析のマグニチュード
+                        example: 0.9
+        # "400":
+        #   description: 日記登録時のエラー
+        #   content:
+        #     application/json:
+        #       schema:
+        #         type: object
+        #         properties:
+        #           error:
+        #             type: object
+        #             properties:
+        #               code:
+        #                 type: number
+        #                 description: エラーコード
+        #                 example: 400
+        #               message:
+        #                 type: string
+        #                 description: エラーメッセージ
+        #                 example: 入力内容に誤りがあります。
+  /dairies:
+    get:
+      summary: 日記一覧を閲覧
+      description: 書かれた日記の一覧を取得する
+      tags:
+        - dairies
+      responses:
+        "200":
+          description: 日記一覧取得成功時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: 各日記のID
+                      example: "1"
+                    title:
+                      type: string
+                      description: 日記のタイトル
+                      example: レムを助けた日
+                    content:
+                      type: string
+                      description: 日記の本文
+                      example: タイムリープを繰り返しました。
+                    date:
+                      type: string
+                      description: 日記の日付 (YYYY-MM-DD形式)
+                      example: "2024-12-13"
+                    image:
+                      type: string
+                      description: 日記の写真
+                      example: example.png
+        "404":
+          description: 日記一覧取得時のエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFoundError"
+  /setting:
+    get:
+      tags:
+        - setting
+      summary: 設定情報の取得
+      description: 現在のアプリ設定を取得する
+      responses:
+        "200":
+          description: 設定情報取得成功時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: ニックネームの設定
+                    example: スバル ナツキ
+                  display:
+                    type: string
+                    description: 画面の色の反転 (true/false)
+                    example: "true"
+                  notification:
+                    type: string
+                    description: 通知設定 (true/false)
+                    example: "true"
+                  music:
+                    type: string
+                    description: 音楽の設定 (true/false)
+                    example: "false"
+        # "400":
+        #   description: 設定情報取得時のエラー
+        #   content:
+        #     application/json:
+        #       schema:
+        #         type: object
+        #         properties:
+        #           error:
+        #             type: object
+        #             properties:
+        #               code:
+        #                 type: number
+        #                 description: エラーコード
+        #                 example: 400
+        #               message:
+        #                 type: string
+        #                 description: エラーメッセージ
+        #                 example: 設定情報を取得できませんでした。
+    patch:
+      summary: 設定情報の変更
+      description: アプリの設定を更新する
+      tags:
+        - setting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ニックネームの設定
+                display:
+                  type: string
+                  description: 画面の色の反転 (true/false)
+                notification:
+                  type: string
+                  description: 通知設定 (true/false)
+                music:
+                  type: string
+                  description: 音楽の設定 (true/false)
+              required:
+                - name
+                - display
+                - notification
+                - music
+      responses:
+        "200":
+          description: 設定情報変更成功時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 設定変更成功メッセージ
+                    example: 設定が変更されました。
+        "400":
+          description: 設定情報変更時のエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequestError"
+        "404":
+          description: 設定情報変更時のエラー
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFoundError"
+  /achievement:
+    get:
+      summary: 達成項目一覧を閲覧
+      description: ユーザーが達成した項目の一覧を取得する
+      tags:
+        - achievement
+      responses:
+        "200":
+          description: 達成項目一覧取得成功時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      description: 達成項目のタイトル
+                      example: 初めて日記を書く
+                    image:
+                      type: string
+                      description: メダルの画像
+                      example: achieved.png
+                    progress:
+                      type: string
+                      description: 達成進捗 (0未達成 / 1達成済み)
+                      example: "1"
+        "400":
+          description: 達成項目一覧取得時のエラー
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: number
+                        description: エラーコード
+                        example: 400
+                      message:
+                        type: string
+                        description: エラーメッセージ
+                        example: 達成項目を取得できませんでした。
+components:
+  schemas:
+    BadRequestError:
+      type: object
+      properties:
+        code:
+          type: number
+          description: エラーコード
+        message:
+          type: string
+          description: エラーメッセージ
+      example:
+        code: 400
+        message: "デフォルトのエラーメッセージ"
+    UnauthorizedError:
+      type: object
+      properties:
+        code:
+          type: number
+          description: エラーコード
+        message:
+          type: string
+          description: エラーメッセージ
+      example:
+        code: 401
+        message: 認証エラーです
+    NotFoundError:
+      type: object
+      properties:
+        code:
+          type: number
+          description: エラーコード
+        message:
+          type: string
+          description: エラーメッセージ
+      example:
+        code: 404
+        message: データが見つかりませんでした
+    ServerError:
+      type: object
+      properties:
+        code:
+          type: number
+          description: エラーコード
+        message:
+          type: string
+          description: エラーメッセージ
+      example:
+        code: 500
+        message: "サーバーエラーが発生しました"
+    CharacterStatus:
+      type: object
+      properties:
+        characterId:
+          type: string
+          description: キャラクターID
+          example: "01"
+        expression:
+          type: string
+          description: キャラクターの表情ステータス
+          enum:
+            - Fantastic
+            - Great
+            - Average
+            - Bad
+            - Awful
+          example: Fantastic
+        image:
+          type: string
+          description: キャラクター画像のパス
+          example: example.png
