@@ -27,6 +27,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "prisma/seed.ts",
-    "prisma/seed.ts"
+    "prisma/seed.ts",
+    "src/api/create_user_api.ts"
   ]
 }
