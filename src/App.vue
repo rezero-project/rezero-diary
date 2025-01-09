@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import Footer from "./components/Footer.vue";
+import Header from "./components/Header.vue";
 </script>
 
 <template>
+  <Header />
   <p><strong>現在のパス：</strong>{{ $route.fullPath }}</p>
   <nav>
     <RouterLink to="/">Go to Home</RouterLink><br>
     <RouterLink to="/create-user">Create User</RouterLink><br>
-    <RouterLink to="set-nickname">Set Nickname</RouterLink>
+    <RouterLink to="set-nickname">Set Nickname</RouterLink><br>
+    <RouterLink to="/login-user">Login</RouterLink>
   </nav>
   <main>
     <RouterView />
