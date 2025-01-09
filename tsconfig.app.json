@@ -28,5 +28,5 @@
     "src/**/*.vue",
     "prisma/seed.ts",
     "prisma/seed.ts"
-  ]
+, "src/api/server.ts"  ]
 }
