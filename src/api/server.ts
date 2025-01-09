@@ -5,9 +5,10 @@ import cors from "cors";
 const app = express();
 const prisma = new PrismaClient();
 
+//フロントエンドとバックエンドが異なるポート番号でも通信を許可してくれる
 app.use(cors());
-
-app.get("/", (req, res) => {
+//クライアントがサーバーにアクセスするとメッセージ表示
+app.get("/", (_req, res) => {
   res.send("Welcome to the API server!");
 });
 // ユーザーのニックネームを取得するエンドポイント
