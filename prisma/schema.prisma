@@ -18,9 +18,9 @@ model User {
   name String
   email String
   birthday String
-  nickname String
+  nickname String?
   password String
-  character_id String
+  character_id String?
 }
 
 model Character {
