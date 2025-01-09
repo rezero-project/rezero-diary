@@ -6,10 +6,13 @@ import Footer from "./components/Footer.vue";
 <template>
   <p><strong>現在のパス：</strong>{{ $route.fullPath }}</p>
   <nav>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/create-user">Create User</RouterLink>
+    <RouterLink to="/">Go to Home</RouterLink><br>
+    <RouterLink to="/create-user">Create User</RouterLink><br>
+    <RouterLink to="set-nickname">Set Nickname</RouterLink>
   </nav>
-  <main><RouterView /></main>
+  <main>
+    <RouterView />
+  </main>
   <Footer />
 </template>
 
