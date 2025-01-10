@@ -23,7 +23,6 @@ app.get("/api/nickname/:id", async (req, res) => {
     });
 
     if (user) {
-      console.log("ユーザーデータ:", user);
       res.json(user);
     } else {
       res.status(404).json({ message: "ユーザーが見つかりません" });
@@ -36,7 +35,6 @@ app.get("/api/nickname/:id", async (req, res) => {
 //目標取得
 app.get("/api/goal/:id", async (req, res) => {
   const userId = parseInt(req.params.id, 10);
-  console.log("id:", userId);
   try {
     const user = await prisma.goal.findUnique({
       where: { id: userId },
@@ -55,7 +53,6 @@ app.get("/api/goal/:id", async (req, res) => {
 //今日の顔取得
 app.get("/api/diary/:id", async (req, res) => {
   const userId = parseInt(req.params.id, 10);
-  console.log("id:", userId);
   try {
     const user = await prisma.diary.findUnique({
       where: { id: userId },
