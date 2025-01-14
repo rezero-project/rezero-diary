@@ -12,7 +12,8 @@ import Header from "./components/Header.vue";
     <RouterLink to="/create-user">Create User</RouterLink><br>
     <RouterLink to="set-nickname">Set Nickname</RouterLink><br>
     <RouterLink to="/login-user">Login</RouterLink><br>
-    <RouterLink to="/setting">Setting</RouterLink>
+    <RouterLink to="/setting">Setting</RouterLink><br>
+    <RouterLink to="select-character">Select Character</RouterLink>
   </nav>
   <main>
     <RouterView />
