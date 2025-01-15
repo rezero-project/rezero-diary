@@ -1,32 +1,33 @@
-<script></script>
+<script setup="ts">
+</script>
 
 <template>
   <div class="container">
     <form action="" class="form">
       <div class="setting-nickname">
         <label for="name">ニックネームの変更</label>
-        <input type="text" id="name" class="nickname-textbox" />
+        <input type="text" id="name" class="nickname-textbox" name="name" />
       </div>
       <div class="setting-other">
         <div class="setting-group">
-          <label for="" class="label">ダークモード</label>
+          <label for="dark" class="label">ダークモード</label>
           <div class="toggle-button">
-            <input type="checkbox" class="toggle-input" />
-            <label for="" class="toggle-label" />
+            <input type="checkbox" id="dark" class="toggle-input" name="dark" />
+            <label for="dark" class="toggle-label" />
           </div>
         </div>
         <div class="setting-group">
-          <label for="" class="label">通知</label>
+          <label for="notification" class="label">通知</label>
           <div class="toggle-button">
-            <input type="checkbox" class="toggle-input" />
-            <label for="" class="toggle-label" />
+            <input type="checkbox" id="notification" class="toggle-input" name="notification" />
+            <label for="notification" class="toggle-label" />
           </div>
         </div>
         <div class="setting-group">
-          <label for="" class="label">音楽の有無</label>
+          <label for="music" class="label">音楽の有無</label>
           <div class="toggle-button">
-            <input type="checkbox" class="toggle-input" />
-            <label for="" class="toggle-label" />
+            <input type="checkbox" id="music" class="toggle-input" name="music" />
+            <label for="music" class="toggle-label" />
           </div>
         </div>
       </div>
@@ -95,7 +96,6 @@
   border-radius: 100%;
   left: 3px;
   top: 3.2px;
-  z-index: 2;
   background-color: #fff;
   transition: 0.4s;
 }
