@@ -13,6 +13,7 @@ import Header from "./components/Header.vue";
     <RouterLink to="set-nickname">Set Nickname</RouterLink><br />
     <RouterLink to="/login-user">Login</RouterLink><br />
     <RouterLink to="/setting">Setting</RouterLink><br />
+    <RouterLink to="select-character">Select Character</RouterLink><br />
     <RouterLink to="/achievements">Achievements Page</RouterLink><br />
   </nav>
   <main>
