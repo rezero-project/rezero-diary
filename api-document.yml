@@ -698,7 +698,7 @@ paths:
                       type: string
                       description: 達成進捗 (0未達成 / 1達成済み)
                       example: "1"
-        "400":
+        "500":
           description: 達成項目一覧取得時のエラー
           content:
             application/json:

@@ -4,6 +4,7 @@ import Home from "../components/Home.vue";
 import NicknameForm from "../components/NicknameForm.vue";
 import LoginPage from "../pages/LoginPage.vue";
 import SettingPage from "../pages/SettingPage.vue";
+import AchievementPage from "../pages/AchievementPage.vue";
 
 // パスとコンポーネントを登録
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
   { path: "/set-nickname", component: NicknameForm },
   { path: "/login-user", component: LoginPage },
   { path: "/setting", component: SettingPage },
+  { path: "/achievements", component: AchievementPage },
 ];
 
 const router = createRouter({
