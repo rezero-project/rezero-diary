@@ -12,7 +12,7 @@ const achievementItems = ref<AchievementItemType[]>([]);
 const getAchievementItems = async () => {
   try {
     const response = await fetch(
-      "http://localhost:3000/api/achievements/get-items"
+      "http://localhost:3000/api/achievement/get-items"
     );
     if (!response.ok) {
       throw new Error("達成項目の取得に失敗しました。");
@@ -23,8 +23,9 @@ const getAchievementItems = async () => {
   }
 };
 
-onMounted(() => {});
-getAchievementItems();
+onMounted(() => {
+  getAchievementItems();
+});
 </script>
 
 <template>
