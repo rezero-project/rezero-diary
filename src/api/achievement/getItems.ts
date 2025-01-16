@@ -1,27 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
-import cors from "cors";
 
-const app = express();
 const prisma = new PrismaClient();
+const router = express.Router();
 
-// JSONリクエストを解析するミドルウェア
-// CORSミドルウェアの設定
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
-
-// ルートエンドポイントの定義
-app.get("/", (_req, res) => {
-  res.send("サーバーは正常に作動しています！");
-});
-
-// エンドポイントの設定
-app.get("/api/achievements/get-items", async (_req, res) => {
+// 達成項目取得エンドポイントの設定
+router.get("/get-items", async (_req, res) => {
   try {
     const achievements = await prisma.achievement.findMany();
     res.status(200).json(achievements);
@@ -33,7 +17,4 @@ app.get("/api/achievements/get-items", async (_req, res) => {
   }
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`サーバーがhttp://localhost:${PORT}で起動しました。`);
-});
+export default router;

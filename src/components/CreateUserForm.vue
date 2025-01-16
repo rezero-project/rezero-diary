@@ -25,6 +25,8 @@ const onSubmit = async () => {
         password: formData.value.password,
       }),
     });
+    console.log(response);
+
     if (response.ok) {
       alert("登録が成功しました。");
     } else {
