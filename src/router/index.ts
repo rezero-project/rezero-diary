@@ -7,6 +7,7 @@ import SettingPage from "../pages/SettingPage.vue";
 import SelectCharacterPage from "../pages/SelectCharacterPage.vue";
 import AnalysisResult from "../pages/AnalysisResult.vue";
 import AchievementPage from "../pages/AchievementPage.vue";
+import DiaryNav from "../components/DiaryNav.vue";
 
 // パスとコンポーネントを登録
 const routes = [
@@ -18,6 +19,7 @@ const routes = [
   { path: "/select-character", component: SelectCharacterPage },
   { path: "/analysis-result", component: AnalysisResult },
   { path: "/achievements", component: AchievementPage },
+  { path: "/diaries", component: DiaryNav },
 ];
 
 const router = createRouter({

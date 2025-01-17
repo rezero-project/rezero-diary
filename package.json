@@ -15,9 +15,11 @@
     "prisma": "^6.1.0",
     "ts-node": "^10.9.2",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "vuetify": "^3.7.6"
   },
   "devDependencies": {
+    "@mdi/font": "^7.4.47",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^22.10.2",
