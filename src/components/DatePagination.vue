@@ -1,25 +1,19 @@
-<script>
-export default {
-  data() {
-    return {
-      date: new Date(),
-    };
-  },
-  computed: {
-    // フォーマット
-    formattedDate() {
-      const year = this.date.getFullYear();
-      const month = String(this.date.getMonth() + 1).padStart(2, "0");
-      return `${year} / ${month}`;
-    },
-  },
-  methods: {
-    changeMonth(step) {
-      const newDate = new Date(this.date);
-      newDate.setMonth(newDate.getMonth() + step); //月の増減
-      this.date = newDate;
-    },
-  },
+<script setup lang="ts">
+import { ref, computed } from "vue";
+
+const date = ref(new Date());
+
+// フォーマット
+const formattedDate = computed(() => {
+  const year = date.value.getFullYear();
+  const month = String(date.value.getMonth() + 1).padStart(2, "0");
+  return `${year} / ${month}`;
+});
+
+const changeMonth = (step: number) => {
+  const newDate = new Date(date.value);
+  newDate.setMonth(newDate.getMonth() + step); //月の増減
+  date.value = newDate;
 };
 </script>
 

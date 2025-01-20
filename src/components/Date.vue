@@ -1,38 +1,40 @@
-<script>
-export default {
-  data() {
-    return {
-      date: "",
-      weekday: "",
-      time: "",
-    };
-  },
-  mounted() {
-    this.updateDateTime();
-    this.timer = setInterval(this.updateDateTime, 1000);
-  },
-  methods: {
-    updateDateTime() {
-      const now = new Date();
+<script setup lang="ts">
+import { onMounted, ref, onUnmounted } from "vue";
 
-      this.date = now.toLocaleDateString("ja-JP", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-      this.weekday = now.toLocaleDateString("ja-JP", {
-        weekday: "short",
-      });
+const time = ref("");
+const date = ref("");
+const weekday = ref("");
 
-      const options = { hour: "numeric", minute: "2-digit", hour12: true };
-      const timeString = now.toLocaleTimeString("en-US", options);
-      // AM,PMを時間の前に移動
-      const ampm = timeString.slice(-2);
-      const timeWithoutAmPm = timeString.slice(0, -3);
-      this.time = `${ampm} ${timeWithoutAmPm}`;
-    },
-  },
+let timer: NodeJS.Timeout | null = null;
+
+const updateDateTime = () => {
+  const now = new Date();
+
+  date.value = now.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  weekday.value = now.toLocaleDateString("ja-JP", {
+    weekday: "short",
+  });
+
+  const options = { hour: "numeric", minute: "2-digit", hour12: true };
+  const timeString = now.toLocaleTimeString("en-US", options);
+  // AM,PMを時間の前に移動
+  const ampm = timeString.slice(-2);
+  const timeWithoutAmPm = timeString.slice(0, -3);
+  time.value = `${ampm} ${timeWithoutAmPm}`;
 };
+onMounted(() => {
+  updateDateTime();
+  timer = setInterval(updateDateTime, 1000);
+});
+onUnmounted(() => {
+  if (timer) {
+    clearInterval(timer);
+  }
+});
 </script>
 
 <template>
@@ -46,7 +48,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .time {
   font-weight: bold;
   font-size: 28px;

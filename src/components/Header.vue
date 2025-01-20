@@ -14,9 +14,9 @@ import Date from "../components/Date.vue";
   </header>
 </template>
 
-<style scored>
+<style scoped>
 .header {
-  background-color:#DAEFD1;
+  background-color: #daefd1;
   height: 130px;
   width: 100%;
   padding: 10px 20px;

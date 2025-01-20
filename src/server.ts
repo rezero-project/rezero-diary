@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import createUserRoutes from "./api/user/create";
 import getAchievementItemsRoutes from "./api/achievement/getItems";
+import loginUserRoutes from "./api/user/login";
+import headerRoutes from "./api/header";
 const app = express();
 const port = 3000;
 
@@ -19,8 +21,9 @@ app.use(
 app.use(express.json());
 
 // インポートしたルーティングをアプリに適用
-app.use("/api/user", createUserRoutes);
+app.use("/api/user", createUserRoutes, loginUserRoutes);
 app.use("/api/achievement", getAchievementItemsRoutes);
+app.use("/api/user/header", headerRoutes);
 
 // ルートエンドポイントの定義
 // サーバー起動時に表示される
