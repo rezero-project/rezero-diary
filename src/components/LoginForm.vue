@@ -30,7 +30,6 @@ import Button from "./Button.vue";
     color="#fff"
     type="button"
     to="/create-user"
-    class="create-user"
   />
 </template>
 
