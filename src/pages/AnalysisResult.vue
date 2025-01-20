@@ -5,7 +5,7 @@ import Title from "../components/Title.vue";
 
 <template>
   <DatePagination />
-  <Title title="気持ちの変化"/>
+  <Title title="気持ちの変化" />
 </template>
 
 <style></style>

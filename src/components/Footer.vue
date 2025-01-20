@@ -1,10 +1,8 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <footer class="footer">
-    <img src="" alt="リゼロ画像" class="footer_image">
+    <img src="" alt="リゼロ画像" class="footer_image" />
     <p class="footer_paragraph">©︎Re:ゼロから始める人生日記</p>
   </footer>
 </template>
@@ -14,7 +12,7 @@
   display: flex;
   align-items: center;
   gap: 30px;
-  background-color: #DAEFD1;
+  background-color: #daefd1;
   width: 100%;
   height: 10%;
   position: fixed;
