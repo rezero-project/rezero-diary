@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HomeCharacter from "../components/HomeCharacter.vue";
+
 interface HomeLinkType {
   path: string;
   label: string;
@@ -16,6 +18,9 @@ const homeLinks: HomeLinkType[] = [
 
 <template>
   <div class="bg">
+    <div class="character-image">
+      <HomeCharacter />
+    </div>
     <div class="nav-container">
       <nav class="nav">
         <RouterLink
@@ -35,11 +40,17 @@ const homeLinks: HomeLinkType[] = [
 .bg {
   /* リンクボタンやキャラクターを重ねて表示したいので */
   position: relative;
-  background-image: url("/images/homepage_background.jpeg");
+  background-image: url("/images/homepage_background1.jpeg");
   width: 100vw;
   height: 100vh;
   background-size: cover;
   background-position: center;
+}
+.character-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .nav-container {
   position: absolute;
