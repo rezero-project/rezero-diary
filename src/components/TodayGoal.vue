@@ -1,16 +1,13 @@
-<script>
-export default {
-  data() {
-    return {
-      content: "",
-    };
-  },
-  async mounted() {
-    const res = await fetch("http://localhost:3000/api/goal/1")
-    const data = await res.json()
-    this.content = data.content
-  },
-};
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+
+const content = ref("");
+
+onMounted(async() => {
+  const res = await fetch("http://localhost:3000/api/user/header/1/goal");
+  const data = await res.json();
+  content.value = data.content;
+});
 </script>
 
 <template>
@@ -19,7 +16,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .today-goal {
   font-size: 24px;
   font-weight: bold;
