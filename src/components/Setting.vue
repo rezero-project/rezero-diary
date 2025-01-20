@@ -88,8 +88,8 @@ onMounted(() => {
   padding: 120px 200px;
   border-radius: 10px;
   text-align: justify;
-  background-color: #121212;
-  color: #ffffff;
+  /* background-color: #121212;
+  color: #ffffff; */
 }
 .nickname-textbox {
   height: 20px;
