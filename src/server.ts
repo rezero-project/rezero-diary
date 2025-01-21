@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import createUserRoutes from "./api/user/create";
 import getAchievementItemsRoutes from "./api/achievement/getItems";
-// ./api/user/login存在しないからエラー出てる
 import loginUserRoutes from "./api/user/login";
 import headerRoutes from "./api/header";
 const app = express();

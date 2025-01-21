@@ -5,9 +5,11 @@ import Header from "./components/Header.vue";
 </script>
 
 <template>
-  <Header />
-  <RouterView />
-  <Footer />
+  <div class="app">
+    <Header />
+    <RouterView />
+    <Footer />
+  </div>
 </template>
 
 <style scoped></style>

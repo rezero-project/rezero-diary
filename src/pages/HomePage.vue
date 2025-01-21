@@ -17,7 +17,7 @@ const homeLinks: HomeLinkType[] = [
 </script>
 
 <template>
-  <div class="bg">
+  <div class="container">
     <div class="character-image">
       <HomeCharacter />
     </div>
@@ -37,10 +37,10 @@ const homeLinks: HomeLinkType[] = [
 </template>
 
 <style scoped>
-.bg {
+.container {
   /* リンクボタンやキャラクターを重ねて表示したいので */
   position: relative;
-  background-image: url("/images/homepage_background1.jpeg");
+  background-image: url("/images/homepage_background.jpeg");
   width: 100vw;
   height: 100vh;
   background-size: cover;

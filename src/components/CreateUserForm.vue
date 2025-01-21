@@ -40,63 +40,70 @@ const onSubmit = async () => {
 };
 </script>
 <template>
-  <div class="container">
-    <Title title="新規会員登録" />
-    <div class="form-container">
-      <form class="form" @submit.prevent="onSubmit">
-        <!-- 名前 -->
-        <div class="form-group">
-          <label for="name">名前</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="山田太郎"
-            v-model="formData.name"
-          />
-        </div>
-        <!-- 誕生日 -->
-        <div class="form-group">
-          <label for="bitrhday">生年月日</label>
-          <input type="date" id="bitrhday" v-model="formData.birthday" />
-        </div>
-        <!-- メールアドレス -->
-        <div class="form-group">
-          <label for="email">メールアドレス</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="example@example.com"
-            v-model="formData.email"
-          />
-        </div>
-        <!-- パスワード -->
-        <div class="form-group">
-          <label for="password">パスワード</label>
-          <input
-            type="password"
-            id="password"
-            placeholder=""
-            v-model="formData.password"
-          />
-        </div>
-        <!-- 確認用パスワード -->
-        <div class="form-group">
-          <label for="passwordrepeat">パスワード（確認用）</label>
-          <input
-            type="password"
-            id="passwordrepeat"
-            v-model="formData.passwordrepeat"
-          />
-        </div>
-        <Button background-color="black" title="登録" />
-      </form>
-    </div>
+  <Title title="新規会員登録" />
+  <div class="form-container">
+    <form class="form" @submit.prevent="onSubmit">
+      <!-- 名前 -->
+      <div class="form-group">
+        <label for="name">名前</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="山田太郎"
+          v-model="formData.name"
+        />
+      </div>
+      <!-- 誕生日 -->
+      <div class="form-group">
+        <label for="bitrhday">生年月日</label>
+        <input type="date" id="bitrhday" v-model="formData.birthday" />
+      </div>
+      <!-- メールアドレス -->
+      <div class="form-group">
+        <label for="email">メールアドレス</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="example@example.com"
+          v-model="formData.email"
+        />
+      </div>
+      <!-- パスワード -->
+      <div class="form-group">
+        <label for="password">パスワード</label>
+        <input
+          type="password"
+          id="password"
+          placeholder=""
+          v-model="formData.password"
+        />
+      </div>
+      <!-- 確認用パスワード -->
+      <div class="form-group">
+        <label for="passwordrepeat">パスワード（確認用）</label>
+        <input
+          type="password"
+          id="passwordrepeat"
+          v-model="formData.passwordrepeat"
+        />
+      </div>
+      <Button
+        background-color="black"
+        title="登録"
+        color="white"
+        type="submit"
+      />
+    </form>
   </div>
 </template>
 
 <style scoped>
 /* 後で設定する */
 .container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 50px 150px;
 }
 .form-container {
   width: auto;
@@ -106,7 +113,7 @@ const onSubmit = async () => {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .form-group {
