@@ -38,7 +38,7 @@ const onSubmit = async () => {
       <div class="form-group">
         <label for="email">メールアドレス</label>
         <input
-          type="text"
+          type="email"
           id="email"
           placeholder="example.com"
           v-model="formData.email"
