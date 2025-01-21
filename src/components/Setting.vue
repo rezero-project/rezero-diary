@@ -1,4 +1,36 @@
 <script setup="ts">
+import { onMounted, ref } from "vue";
+
+//状態管理
+const darkMode = ref(false);
+const notification = ref(false);
+const music = ref(false);
+
+//localStorage
+//設定を保存
+const saveSetting = () => {
+  localStorage.setItem(
+    "settings",
+    JSON.stringify({
+      darkMode: darkMode.value,
+      notification: notification.value,
+      music: music.value,
+    })
+  );
+};
+
+//設定を取得
+const getSetting = () => {
+  localStorage.getItem("setting");
+  darkMode.value = settings.darkMode || false;
+  notification.value = settings.notification || false;
+  music.value = settings.music || false;
+};
+
+onMounted(() => {
+  getSetting();
+});
+
 </script>
 
 <template>
@@ -10,23 +42,38 @@
       </div>
       <div class="setting-other">
         <div class="setting-group">
-          <label for="dark" class="label">ダークモード</label>
+          <label for="darkMode" class="label">ダークモード</label>
           <div class="toggle-button">
-            <input type="checkbox" id="dark" class="toggle-input" name="dark" />
-            <label for="dark" class="toggle-label" />
+            <input
+              type="checkbox"
+              id="darkMode"
+              class="toggle-input"
+              name="darkMode"
+            />
+            <label for="darkMode" class="toggle-label" />
           </div>
         </div>
         <div class="setting-group">
           <label for="notification" class="label">通知</label>
           <div class="toggle-button">
-            <input type="checkbox" id="notification" class="toggle-input" name="notification" />
+            <input
+              type="checkbox"
+              id="notification"
+              class="toggle-input"
+              name="notification"
+            />
             <label for="notification" class="toggle-label" />
           </div>
         </div>
         <div class="setting-group">
           <label for="music" class="label">音楽の有無</label>
           <div class="toggle-button">
-            <input type="checkbox" id="music" class="toggle-input" name="music" />
+            <input
+              type="checkbox"
+              id="music"
+              class="toggle-input"
+              name="music"
+            />
             <label for="music" class="toggle-label" />
           </div>
         </div>
@@ -41,6 +88,8 @@
   padding: 120px 200px;
   border-radius: 10px;
   text-align: justify;
+  /* background-color: #121212;
+  color: #ffffff; */
 }
 .nickname-textbox {
   height: 20px;

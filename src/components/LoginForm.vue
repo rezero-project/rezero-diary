@@ -1,17 +1,57 @@
 <script setup lang="ts">
 import Button from "./Button.vue";
+import { ref } from "vue";
+
+const formData = ref({
+  email: "",
+  password: "",
+});
+
+const onSubmit = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/user/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: formData.value.email,
+        password: formData.value.password,
+      }),
+    });
+    if (!res.ok) {
+      const error = await res.json();
+      alert(error.error || "ログインに失敗しました。");
+      return;
+    }
+    const data = await res.json();
+    console.log("ログイン成功:", data);
+    alert("ログインに成功しました！");
+  } catch (error) {
+    console.error("エラー:", error);
+    alert("エラーが発生しました。");
+  }
+};
 </script>
 
 <template>
   <div class="container">
-    <form action="" class="form">
+    <form action="" class="form" @submit.prevent="onSubmit">
       <div class="form-group">
         <label for="email">メールアドレス</label>
-        <input type="text" id="email" placeholder="example.com" />
+        <input
+          type="email"
+          id="email"
+          placeholder="example.com"
+          v-model="formData.email"
+        />
       </div>
       <div class="form-group">
         <label for="password">パスワード</label>
-        <input type="text" id="password" placeholder="" />
+        <input
+          type="password"
+          id="password"
+          placeholder=""
+          v-model="formData.password"
+        />
       </div>
       <Button
         class="login-button"
@@ -19,7 +59,6 @@ import Button from "./Button.vue";
         background-color="black"
         color="#fff"
         type="submit"
-        to="/"
       />
     </form>
     <a href="/" class="forget-password">パスワードをお忘れですか？</a>
