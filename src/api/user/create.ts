@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 // express.Router()を使用することでルーティングが可能となり、モジュール化できる
@@ -16,13 +17,18 @@ router.post("/create", async (req, res) => {
       .json({ error: "必要な情報をすべて入力してください。" });
   }
 
+  // パスワードをハッシュ化
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(password, salt);
+  console.log(hashedPassword);
+
   try {
     const newUser = await prisma.user.create({
       data: {
         name,
         birthday,
         email,
-        password,
+        password: hashedPassword,
       },
     });
     res

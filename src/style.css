@@ -3,8 +3,10 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  /* これがあるとダークモードの時文字色が変わるので一旦コメントアウト */
+  /* color-scheme: light dark; */
+  color: black;
+  /* color: rgba(255, 255, 255, 0.87); */
   background-color: #f1e9dc;
 
   font-synthesis: none;
@@ -26,7 +28,7 @@ body {
   padding: 0;
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -59,7 +61,7 @@ form input {
   /* max-width: 1280px; */
   margin: 0 auto;
   /* padding: 2rem; */
-  /* text-align: center; */
+  text-align: center;
 }
 
 @media (prefers-color-scheme: light) {
