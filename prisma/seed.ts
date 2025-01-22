@@ -45,9 +45,8 @@ async function main() {
   });
   await prisma.achievement.create({
     data: {
-      title: "初めて日記を書く",
-      progress: 1,
-      user_id: "01",
+      description: "初めて日記を書く",
+      quota: 1,
     },
   });
   await prisma.achievement_image.create({

@@ -55,9 +55,8 @@ model Setting {
 
 model Achievement {
   id Int @id @default(autoincrement())
-  title String
-  progress Int
-  user_id String
+  description String
+  quota Int
 }
 
 model Achievement_image {
