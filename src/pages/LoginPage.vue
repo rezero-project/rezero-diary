@@ -4,7 +4,7 @@ import LoginForm from "../components/LoginForm.vue";
 
 <template>
   <img
-    src="../../public/images/rezero.png"
+    src="/images/rezero.png"
     alt="rezero"
     width="700px"
     class="rezero-image"

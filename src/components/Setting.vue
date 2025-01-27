@@ -1,44 +1,101 @@
-<script setup="ts">
+<script setup lang="ts">
 import { onMounted, ref } from "vue";
+import Button from "./Button.vue";
+// import { initializeDarkMode } from "../utils/theme";
+
+// onMounted(() => {
+//   initializeDarkMode();
+// });
 
 //状態管理
+const nickname = ref("");
 const darkMode = ref(false);
 const notification = ref(false);
 const music = ref(false);
+const backgroundMusic = ref<HTMLAudioElement | null>(null);
 
-//localStorage
-//設定を保存
+//localStorageに文字列化した設定を保存
 const saveSetting = () => {
   localStorage.setItem(
     "settings",
     JSON.stringify({
+      // nickname: nickname.value,
       darkMode: darkMode.value,
       notification: notification.value,
       music: music.value,
     })
   );
 };
-
-//設定を取得
+saveSetting();
+//設定をlocalStorageから取得してrefに反映
 const getSetting = () => {
-  localStorage.getItem("setting");
-  darkMode.value = settings.darkMode || false;
-  notification.value = settings.notification || false;
-  music.value = settings.music || false;
+  const settings = localStorage.getItem("settings");
+  if (settings) {
+    //JSON.parseで文字列をオブジェクトに直し、refに反映
+    const parseSetting = JSON.parse(settings);
+    // nickname.value = parseSetting.nickname || "";
+    darkMode.value = parseSetting.darkMode || false;
+    notification.value = parseSetting.notification || false;
+    music.value = parseSetting.music || false;
+  }
+};
+
+// ニックネームをデータベースに反映
+const updateNickName = async () => {
+  const res = await fetch(
+    `http://localhost:3000/api/settingNewNickName/1/nickname`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ nickname: nickname.value }),
+    }
+  );
+  if (res.ok) {
+    alert("更新に成功しました。");
+  } else {
+    alert("更新に失敗しました。");
+  }
+};
+
+// 音楽の再生、停止
+const handleMusic = () => {
+  if (backgroundMusic.value) {
+    if (music.value) {
+      backgroundMusic.value.play();
+    } else {
+      backgroundMusic.value.pause();
+    }
+  }
 };
 
 onMounted(() => {
   getSetting();
+  // 初期化時に音楽の状態を反映
+  backgroundMusic.value = document.getElementById(
+    "background-music"
+  ) as HTMLAudioElement | null;
+  if (music.value && backgroundMusic.value) {
+    backgroundMusic.value.pause();
+  }
 });
-
 </script>
 
+<!-- ニックネームはデータベースへ保存 -->
 <template>
-  <div class="container">
-    <form action="" class="form">
+  <div :class="{ container: darkMode }">
+    <form class="form" @submit.prevent="updateNickName">
       <div class="setting-nickname">
         <label for="name">ニックネームの変更</label>
-        <input type="text" id="name" class="nickname-textbox" name="name" />
+        <input
+          type="text"
+          id="name"
+          class="nickname-textbox"
+          name="name"
+          v-model="nickname"
+        />
+        <!-- valueに変更前のニックネーム入れたい -->
       </div>
       <div class="setting-other">
         <div class="setting-group">
@@ -61,6 +118,8 @@ onMounted(() => {
               id="notification"
               class="toggle-input"
               name="notification"
+              v-model="notification"
+              @change="saveSetting"
             />
             <label for="notification" class="toggle-label" />
           </div>
@@ -73,9 +132,23 @@ onMounted(() => {
               id="music"
               class="toggle-input"
               name="music"
+              v-model="music"
+              @change="handleMusic"
             />
             <label for="music" class="toggle-label" />
+            <audio
+              id="background-music"
+              src="background-music.mp3"
+              loop
+            ></audio>
           </div>
+          <Button
+            background-color="black"
+            title="更新"
+            color="#fff"
+            type="submit"
+          >
+          </Button>
         </div>
       </div>
     </form>
@@ -121,7 +194,7 @@ onMounted(() => {
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 5;
+  z-index: 1;
   cursor: pointer;
   opacity: 0;
 }

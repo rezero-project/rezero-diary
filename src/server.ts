@@ -4,6 +4,8 @@ import createUserRoutes from "./api/user/create";
 import getAchievementItemsRoutes from "./api/achievement/getItems";
 import loginUserRoutes from "./api/user/login";
 import headerRoutes from "./api/header";
+import settingNewNicknameRoutes from "./api/settingNewNickName"
+
 const app = express();
 const port = 3000;
 
@@ -24,6 +26,7 @@ app.use(express.json());
 app.use("/api/user", createUserRoutes, loginUserRoutes);
 app.use("/api/achievement", getAchievementItemsRoutes);
 app.use("/api/user/header", headerRoutes);
+app.use("/api/settingNewNickname",settingNewNicknameRoutes)
 
 // ルートエンドポイントの定義
 // サーバー起動時に表示される
