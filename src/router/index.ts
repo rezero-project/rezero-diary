@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import NicknameForm from "../components/NicknameForm.vue";
 import LoginPage from "../pages/LoginPage.vue";
 import SettingPage from "../pages/SettingPage.vue";
@@ -21,8 +21,10 @@ const routes = [
   { path: "/diaries", component: DiaryNav },
 ];
 
+// createMemoryHistory(): 遷移してもURLがそのまま
+// createWebHistory(): 遷移したらURLも変わる
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
 

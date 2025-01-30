@@ -16,7 +16,6 @@ router.use(
   })
 );
 
-
 // //フォームに入力した新しいニックネームをデータベースに反映させて
 // //headerのニックネーム欄に即時反映させる
 router.patch("/:id/nickname", async (req, res) => {
@@ -32,7 +31,7 @@ router.patch("/:id/nickname", async (req, res) => {
       .status(200)
       .json({ message: "ニックネームを更新しました", user: updateNickname });
   } catch {
-    res.status(500).json({ error: "サーバーえらー" });
+    res.status(500).json({ error: "サーバーエラー" });
   }
 });
 
