@@ -6,8 +6,8 @@ import SelectCharacterPage from "../pages/SelectCharacterPage.vue";
 import AnalysisResult from "../pages/AnalysisResult.vue";
 import AchievementPage from "../pages/AchievementPage.vue";
 import HomePage from "../pages/HomePage.vue";
-import DiaryNav from "../components/DiaryNav.vue";
 import CreateUserPage from "../pages/CreateUserPage.vue";
+import DiaryPage from "../pages/DiaryPage.vue";
 // パスとコンポーネントを登録
 const routes = [
   { path: "/", component: HomePage },
@@ -18,7 +18,7 @@ const routes = [
   { path: "/select-character", component: SelectCharacterPage },
   { path: "/analysis-result", component: AnalysisResult },
   { path: "/achievements", component: AchievementPage },
-  { path: "/diaries", component: DiaryNav },
+  { path: "/diaries", component: DiaryPage },
 ];
 
 // createMemoryHistory(): 遷移してもURLがそのまま
