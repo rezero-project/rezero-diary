@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Title from "./Title.vue";
 import Button from "./Button.vue";
 const formData = ref({
   name: "",
@@ -40,13 +39,13 @@ const onSubmit = async () => {
 };
 </script>
 <template>
-  <Title title="新規会員登録" />
-  <div class="form-container">
-    <form class="form" @submit.prevent="onSubmit">
+  <div class="create-user-form">
+    <form class="create-user-form__body" @submit.prevent="onSubmit">
       <!-- 名前 -->
-      <div class="form-group">
-        <label for="name">名前</label>
+      <div class="create-user-form__group">
+        <label class="create-user-form__label" for="name">名前</label>
         <input
+          class="create-user-form__input"
           type="text"
           id="name"
           placeholder="山田太郎"
@@ -54,14 +53,22 @@ const onSubmit = async () => {
         />
       </div>
       <!-- 誕生日 -->
-      <div class="form-group">
-        <label for="bitrhday">生年月日</label>
-        <input type="date" id="bitrhday" v-model="formData.birthday" />
+      <div class="create-user-form__group">
+        <label class="create-user-form__label" for="birthday">生年月日</label>
+        <input
+          class="create-user-form__input"
+          type="date"
+          id="birthday"
+          v-model="formData.birthday"
+        />
       </div>
       <!-- メールアドレス -->
-      <div class="form-group">
-        <label for="email">メールアドレス</label>
+      <div class="create-user-form__group">
+        <label class="create-user-form__label" for="email"
+          >メールアドレス</label
+        >
         <input
+          class="create-user-form__input"
           type="email"
           id="email"
           placeholder="example@example.com"
@@ -69,9 +76,10 @@ const onSubmit = async () => {
         />
       </div>
       <!-- パスワード -->
-      <div class="form-group">
-        <label for="password">パスワード</label>
+      <div class="create-user-form__group">
+        <label class="create-user-form__label" for="password">パスワード</label>
         <input
+          class="create-user-form__input"
           type="password"
           id="password"
           placeholder=""
@@ -79,45 +87,61 @@ const onSubmit = async () => {
         />
       </div>
       <!-- 確認用パスワード -->
-      <div class="form-group">
-        <label for="passwordrepeat">パスワード（確認用）</label>
+      <div class="create-user-form__group">
+        <label class="create-user-form__label" for="passwordrepeat"
+          >パスワード（確認用）</label
+        >
         <input
+          class="create-user-form__input"
           type="password"
           id="passwordrepeat"
           v-model="formData.passwordrepeat"
         />
       </div>
-      <Button
-        background-color="black"
-        title="登録"
-        color="white"
-        type="submit"
-      />
+      <div class="create-user-form__button">
+        <Button
+          background-color="black"
+          title="登録"
+          color="white"
+          type="submit"
+        />
+      </div>
     </form>
   </div>
 </template>
 
-<style scoped>
-/* 後で設定する */
-.container {
-  display: flex;
-  flex-direction: column;
+<style lang="scss" scoped>
+.create-user-form {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 2.5rem 5rem;
+  max-width: 600px;
+  margin: auto;
 
-  padding: 50px 150px;
-}
-.form-container {
-  width: auto;
-  text-align: left;
-}
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
+  &__label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  &__input {
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
 }
 </style>
