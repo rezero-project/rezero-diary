@@ -12,7 +12,7 @@ tags:
     description: 目標について
   - name: todayface
     description: 顔の画像取得
-  - name: dairies
+  - name: diaries
     description: 日記に関する情報
   - name: setting
     description: 設定について
@@ -438,7 +438,7 @@ paths:
       summary: 日記の記述をする
       description: 日記の登録と、文章内容を元に感情分析を行う
       tags:
-        - dairies
+        - diaries
       requestBody:
         required: true
         content:
@@ -527,12 +527,11 @@ paths:
         #                 type: string
         #                 description: エラーメッセージ
         #                 example: 入力内容に誤りがあります。
-  /dairies:
     get:
       summary: 日記一覧を閲覧
       description: 書かれた日記の一覧を取得する
       tags:
-        - dairies
+        - diaries
       responses:
         "200":
           description: 日記一覧取得成功時のレスポンス

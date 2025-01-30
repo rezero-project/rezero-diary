@@ -7,12 +7,12 @@ interface AchievementItemType {
   quota: number;
 }
 
-interface DairiesType {}
+interface DiariesType {}
 // データベースから取得した達成項目を格納する場所
 const achievementItems = ref<AchievementItemType[]>([]);
 
 // データベースから取得した日記を格納する場所（今はサンプルデータを入れている）
-const dairies = ref<DairiesType[]>([
+const diaries = ref<DiariesType[]>([
   {
     id: 1,
     title: "公園での一日",
@@ -78,8 +78,8 @@ const dairies = ref<DairiesType[]>([
 // 達成状況を計算
 const achievementProgress = computed(() =>
   achievementItems.value.map((achievement) => {
-    // dairies の件数をカウント
-    const count = dairies.value.length;
+    // diaries の件数をカウント
+    const count = diaries.value.length;
     return {
       ...achievement,
       achieved: count >= achievement.quota,
@@ -103,13 +103,13 @@ const getAchievementItems = async () => {
   }
 };
 
-const getDairies = async () => {
-  console.log(dairies);
+const getDiaries = async () => {
+  console.log(diaries);
 };
 
 onMounted(() => {
   getAchievementItems();
-  getDairies();
+  getDiaries();
 });
 </script>
 
