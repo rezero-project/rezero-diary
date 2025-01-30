@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import Button from './Button.vue';
 
 const selectedImage = ref<string | null>(null)
-const title = ref<string>("")
-const content = ref<string>("")
-const createdAt = ref<string>(new Date().toISOString())
-const image_path = ref<string>("")
-const user_id = ref<string>("")
+const formData = reactive({
+  title: "",
+  content: "",
+  createdAt: new Date().toISOString(),
+  image_path: "",
+  user_id: ""
+})
 
 const handleImageChange = (ev: Event) => {
   const file = (ev.target as HTMLInputElement).files?.[0]
   if (file) {
-    image_path.value = file.name
+    formData.image_path = file.name
     const reader = new FileReader()
     reader.onload = () => {
       selectedImage.value = reader.result as string
@@ -29,11 +31,11 @@ const submitForm = async (e: Event) => {
       "Content-type": "application/json"
     },
     body: JSON.stringify({
-      title: title.value,
-      content: content.value,
-      createdAt: createdAt.value,
-      image_path: image_path.value,
-      user_id: user_id.value
+      title: formData.title,
+      content: formData.content,
+      createdAt: formData.createdAt,
+      image_path: formData.image_path,
+      user_id: formData.user_id
     })
   })
 
@@ -43,9 +45,9 @@ const submitForm = async (e: Event) => {
 
 <template>
   <form class="diary-form" @submit.prevent="submitForm">
-    <input type="text" class="diary-text" placeholder="タイトル" v-model="title">
+    <input type="text" class="diary-text" placeholder="タイトル" v-model="formData.title">
     <textarea name="diary-textarea" id="diary-textarea" class="diary-textarea" rows="7" cols="80" placeholder="日記入力"
-      v-model="content"></textarea>
+      v-model="formData.content"></textarea>
     <input type="file" id="image-input" accept="image/*" @change="handleImageChange">
     <div v-if="selectedImage">
       <img :src="selectedImage" alt="選択された画像" class="image-input">
