@@ -9,6 +9,7 @@ const formData = ref({
   passwordrepeat: "",
 });
 
+const openModal = () => {};
 const onSubmit = async () => {
   if (formData.value.password !== formData.value.passwordrepeat) {
     alert("パスワードが一致しません。");
@@ -101,12 +102,26 @@ const onSubmit = async () => {
       <div class="create-user-form__button">
         <Button
           background-color="black"
-          title="登録"
+          title="入力内容を確認する"
           color="white"
-          type="submit"
+          type="button"
+          @click="openModal"
         />
       </div>
     </form>
+  </div>
+  <!-- 入力確認のモーダルを作ってる途中 -->
+  <div class="overlay">
+    <div class="modal-window">
+      <label for="modal-name">名前</label>
+      <p id="modal-name">{{ formData.name }}</p>
+      <label for="modal-birthday">生年月日</label>
+      <p>{{ formData.birthday }}</p>
+      <label for="modal-email">メールアドレス</label>
+      <p>{{ formData.email }}</p>
+      <label for="modal-password">パスワード</label>
+      <p>{{ formData.password }}</p>
+    </div>
   </div>
 </template>
 
@@ -127,6 +142,7 @@ const onSubmit = async () => {
   &__group {
     display: flex;
     flex-direction: column;
+    text-align: left;
   }
   &__label {
     font-size: 1rem;
