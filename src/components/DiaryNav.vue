@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+defineProps<{
+  handleImageChange: (e: Event) => void
+  resetForm: () => void
+}>()
+
 const currentDate = ref(new Date())
 
 const year = currentDate.value.getFullYear()
@@ -11,19 +16,24 @@ const daysOfWeek = ["日", "月", "火", "水", "木", "金", "土"]
 const dayOfWeek = daysOfWeek[currentDate.value.getDay()]
 
 const formattedDate = `${year} / ${month} / ${day} (${dayOfWeek})`
+
+const inputOpenFile = () => {
+  document.getElementById("image-input")?.click()
+}
 </script>
 
 <template>
   <div class="DiaryDate">
     <div class="image-icon">
-      <v-icon icon="mdi-image-outline" size="x-large"></v-icon>
+      <input type="file" id="image-input" hidden accept="image/*" @change="handleImageChange">
+      <v-icon icon="mdi-image-outline" size="x-large" @click="inputOpenFile"></v-icon>
     </div>
     <p class="yearMonthDay">{{ formattedDate }}</p>
     <div class="arrow-icons">
       <v-icon icon="mdi-arrow-down-bold-circle-outline" size="x-large"></v-icon>
       <v-icon icon="mdi-arrow-left-top" size="x-large"></v-icon>
       <v-icon icon="mdi-arrow-right-top" size="x-large"></v-icon>
-      <v-icon icon="mdi-trash-can-outline" size="x-large"></v-icon>
+      <v-icon icon="mdi-trash-can-outline" size="x-large" @click="resetForm"></v-icon>
     </div>
   </div>
 </template>
