@@ -1,27 +1,33 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { toRefs } from 'vue';
 import Button from './Button.vue';
 
-const selectedImage = ref<string | null>(null)
-const formData = reactive({
-  title: "",
-  content: "",
-  createdAt: new Date().toISOString(),
-  image_path: "",
-  user_id: ""
-})
-
-const handleImageChange = (ev: Event) => {
-  const file = (ev.target as HTMLInputElement).files?.[0]
-  if (file) {
-    formData.image_path = file.name
-    const reader = new FileReader()
-    reader.onload = () => {
-      selectedImage.value = reader.result as string
-    }
-    reader.readAsDataURL(file)
+const props = defineProps<{
+  formData: {
+    title: string
+    content: string
+    createdAt: string
+    image_path: string
+    user_id: string
   }
+  selectedImage: string | null
+}>()
+
+const { title, content, createdAt, image_path, user_id } = toRefs(props.formData)
+
+const emit = defineEmits(["update:selectedImage"])
+
+const resetForm = () => {
+  title.value = ""
+  content.value = ""
+  createdAt.value = new Date().toISOString()
+  image_path.value = ""
+  user_id.value = ""
+
+  emit("update:selectedImage", null)
 }
+
+defineExpose({ resetForm })
 
 const submitForm = async (e: Event) => {
   e.preventDefault();
@@ -31,14 +37,15 @@ const submitForm = async (e: Event) => {
       "Content-type": "application/json"
     },
     body: JSON.stringify({
-      title: formData.title,
-      content: formData.content,
-      createdAt: formData.createdAt,
-      image_path: formData.image_path,
-      user_id: formData.user_id
+      title: title.value,
+      content: content.value,
+      createdAt: createdAt.value,
+      image_path: image_path.value,
+      user_id: user_id.value
     })
   })
 
+  resetForm()
 }
 
 </script>
@@ -48,7 +55,6 @@ const submitForm = async (e: Event) => {
     <input type="text" class="diary-text" placeholder="タイトル" v-model="formData.title">
     <textarea name="diary-textarea" id="diary-textarea" class="diary-textarea" rows="7" cols="80" placeholder="日記入力"
       v-model="formData.content"></textarea>
-    <input type="file" id="image-input" accept="image/*" @change="handleImageChange">
     <div v-if="selectedImage">
       <img :src="selectedImage" alt="選択された画像" class="image-input">
     </div>

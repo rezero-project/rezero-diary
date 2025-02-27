@@ -43,6 +43,8 @@ model Diary {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user_id String
+  sentimentScore Float? @default(0)
+  sentimentMagnitude Float? @default(0)
 }
 
 model Setting {
